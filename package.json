@@ -1,0 +1,12 @@
+{
+  "name": "libocbwoy3",
+  "private": true,
+  "version": "0.0.1",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "bun run build:all",
+    "build:all": "for d in packages/*; do bun run --cwd \"$d\" build; done"
+  }
+}

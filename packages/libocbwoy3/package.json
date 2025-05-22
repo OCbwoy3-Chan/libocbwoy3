@@ -1,0 +1,10 @@
+{
+    "name": "@ocbwoy3/libocbwoy3",
+    "version": "0.0.1",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+      "build": "bun tsc"
+    }
+  }
+  
