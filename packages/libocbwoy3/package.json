@@ -6,6 +6,6 @@
 	"scripts": {
 		"build": "bun run clean && bun run compile",
 		"clean": "trap \"rm -rf dist/\" EXIT",
-		"compile": "bun tsc --build --force"
+		"compile": "bunx tsc --build --force"
 	}
 }
