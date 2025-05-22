@@ -1,12 +1,16 @@
 {
-  "name": "libocbwoy3",
-  "private": true,
-  "version": "0.0.1",
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "build": "bun run build:all",
-    "build:all": "for d in packages/*; do bun run --cwd \"$d\" build; done"
-  }
+	"name": "libocbwoy3",
+	"private": true,
+	"version": "0.0.1",
+	"workspaces": [
+		"packages/*"
+	],
+	"repository": "https://github.com/OCbwoy3-Chan/libocbwoy3",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
+	"scripts": {
+		"build": "bun run build:all",
+		"build:all": "for d in packages/*; do bun run --cwd \"$d\" build; done"
+	}
 }

@@ -1,0 +1,54 @@
+name: Publish Packages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build all packages
+        run: bun run build
+
+      - name: Setup npm auth
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
+          echo "@ocbwoy3:registry=https://npm.pkg.github.com" >> .npmrc
+
+      - name: Publish packages
+        run: |
+          for dir in packages/*; do
+            if [ -d "$dir" ]; then
+              cd "$dir"
+
+              # Get package name from package.json
+              PACKAGE_NAME=$(node -p "require('./package.json').name")
+
+              # If package name doesn't have the namespace, add it
+              if [[ $PACKAGE_NAME != @ocbwoy3/* ]]; then
+                # Extract just the package name without any existing namespace
+                BASE_NAME=$(node -p "require('./package.json').name.split('/').pop()")
+                # Update package.json with namespaced name
+                node -e "const pkg=require('./package.json'); pkg.name='@ocbwoy3/$BASE_NAME'; require('fs').writeFileSync('./package.json', JSON.stringify(pkg, null, 2))"
+              fi
+
+              # Publish the package
+              npm publish --access public
+
+              cd -
+            fi
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
