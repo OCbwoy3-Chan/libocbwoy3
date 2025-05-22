@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "scripts": {
+    "prepare": "bun run build",
     "build": "bun run build:all",
     "build:all": "for d in packages/*; do bun run --cwd \"$d\" build; done"
   }
