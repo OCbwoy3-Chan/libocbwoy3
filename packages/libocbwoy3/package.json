@@ -1,9 +1,10 @@
 {
 	"name": "@ocbwoy3/libocbwoy3",
-	"version": "0.0.2",
+	"version": "0.0.4",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
+		// "publish": "bunx tsc --build --force && npm publish --access public",
 		"build": "bun run clean && bun run compile",
 		"clean": "trap \"rm -rf dist/\" EXIT",
 		"compile": "bunx tsc --build --force"
