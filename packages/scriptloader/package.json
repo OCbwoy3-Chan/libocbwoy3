@@ -1,11 +1,17 @@
 {
-	"name": "@ocbwoy3/libocbwoy3",
-	"version": "0.0.5",
+	"name": "@ocbwoy3/scriptloader",
+	"version": "0.0.7",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "bun run clean && bun run compile",
 		"clean": "trap \"rm -rf dist/\" EXIT",
 		"compile": "bunx tsc --build --force"
+	},
+	"dependencies": {
+		"axios": "^1.9.0"
+	},
+	"peerDependencies": {
+		"axios": "^1.9.0"
 	}
 }

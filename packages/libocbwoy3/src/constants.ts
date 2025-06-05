@@ -1,1 +1,1 @@
-export const _libocbwoy3Version = "0.0.2";
+export { version as _libocbwoy3Version } from "./../package.json"
